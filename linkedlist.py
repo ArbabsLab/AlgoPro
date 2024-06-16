@@ -55,6 +55,42 @@ class LinkedList:
             traversalNode.next = newNode
             newNode.next = temp
         
+    def removeHead(self):
+        if self.head is None:
+            print('List is empty')
+        
+        temp = self.head.next
+        self.head.next = None
+        self.head = temp
+
+    def removeIndex(self, index):
+        if self.head is None:
+            print('List is empty')
+        
+        itr = 0
+        traversalNode = self.head
+        while itr < index-1:
+            traversalNode = traversalNode.next
+            itr += 1
+
+        temp = traversalNode.next.next
+        traversalNode.next.next = None
+        traversalNode.next = temp
+
+        print(traversalNode.data)
+            
+        
+
+    def removeEnd(self):
+        if self.head is None:
+            print('List is empty')
+
+        traversalNode = self.head
+        while traversalNode.next.next != None:
+            traversalNode = traversalNode.next
+        
+        traversalNode.next = None
+
 
         
     
@@ -66,5 +102,11 @@ test.insertEnd(4)
 test.insertEnd(3)
 test.insertEnd(2)
 test.insertEnd(1)
-test.insertIndex(7, 3)  
+test.insertIndex(7, 3)
+test.printList()
+test.removeEnd()
+test.printList() 
+test.removeHead()
+test.printList()
+test.removeIndex(3)
 test.printList()
