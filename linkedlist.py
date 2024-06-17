@@ -16,6 +16,16 @@ class LinkedList:
             print(traversalNode.next.data, '->', end=' ')
             traversalNode = traversalNode.next
         print('NULL')
+    
+    def size(self) -> int:
+        if self.head is None:
+            return 0
+        traversalNode = self.head
+        size = 1
+        while traversalNode.next != None:
+            size += 1
+            traversalNode = traversalNode.next
+        return size
 
     def insertHead(self, data: int):
         newNode = Node(data)
@@ -29,84 +39,62 @@ class LinkedList:
         
         newNode = Node(data)
         if self.head is None:
-            self.head = newNode
+            self.insertHead(data)
+        else:
+            traversalNode = self.head
+            while traversalNode.next != None:
+                traversalNode = traversalNode.next
         
-        traversalNode = self.head
-        while traversalNode.next != None:
-            traversalNode = traversalNode.next
-        
-        traversalNode.next = newNode
+            traversalNode.next = newNode
         
     def insertIndex(self, data: int, index: int):
         newNode = Node(data)
         if self.head is None:
-            self.head = newNode
-        itr = 0
-        traversalNode = self.head
-        while itr < index - 1:
-            traversalNode = traversalNode.next
-            itr += 1
-
-        if index == 0:
-            newNode.next = self.head
-            self.head = newNode
+            self.insertHead(data)
         else:
-            temp = traversalNode.next
-            traversalNode.next = newNode
-            newNode.next = temp
+            itr = 0
+            traversalNode = self.head
+            while itr < index - 1:
+                traversalNode = traversalNode.next
+                itr += 1
+
+            if index == 0:
+                newNode.next = self.head
+                self.head = newNode
+            else:
+                temp = traversalNode.next
+                traversalNode.next = newNode
+                newNode.next = temp
         
     def removeHead(self):
         if self.head is None:
             print('List is empty')
-        
-        temp = self.head.next
-        self.head.next = None
-        self.head = temp
+        else:
+            temp = self.head.next
+            self.head.next = None
+            self.head = temp
 
-    def removeIndex(self, index):
+    def removeIndex(self, index: int):
         if self.head is None:
             print('List is empty')
-        
-        itr = 0
-        traversalNode = self.head
-        while itr < index-1:
-            traversalNode = traversalNode.next
-            itr += 1
-
-        temp = traversalNode.next.next
-        traversalNode.next.next = None
-        traversalNode.next = temp
-
-        print(traversalNode.data)
-            
-        
+        else:
+            itr = 0
+            traversalNode = self.head
+            while itr < index-1:
+                traversalNode = traversalNode.next
+                itr += 1
+            if index == 0:
+                self.removeHead()
+            else:
+                temp = traversalNode.next.next
+                traversalNode.next.next = None
+                traversalNode.next = temp
 
     def removeEnd(self):
         if self.head is None:
             print('List is empty')
-
-        traversalNode = self.head
-        while traversalNode.next.next != None:
-            traversalNode = traversalNode.next
-        
-        traversalNode.next = None
-
-
-        
-    
-    
-test = LinkedList()
-test.insertHead(6)
-test.insertEnd(5)
-test.insertEnd(4)
-test.insertEnd(3)
-test.insertEnd(2)
-test.insertEnd(1)
-test.insertIndex(7, 3)
-test.printList()
-test.removeEnd()
-test.printList() 
-test.removeHead()
-test.printList()
-test.removeIndex(3)
-test.printList()
+        else:
+            traversalNode = self.head
+            while traversalNode.next.next != None:
+                traversalNode = traversalNode.next
+            traversalNode.next = None
