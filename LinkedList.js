@@ -118,11 +118,3 @@ function LinkedList(){
     }
 }
 
-let test = new LinkedList()
-test.addHead(4)
-test.addHead(5)
-test.addEnd(3)
-test.addEnd(2)
-test.addHead(6)
-
-console.log(test.printList())
