@@ -53,6 +53,14 @@ function Queue(){
         return this.head.getVal();
     }
 
+    this.rear = () => {
+        dummyHead = this.head;
+        while(dummyHead.next != null){
+            dummyHead = dummyHead.next;
+        }
+        return dummyHead.getVal();
+    }
+
     this.printList = function(){
         if(this.isEmpty()){
             console.log('No list exists')
@@ -75,8 +83,9 @@ test.enqueue(2)
 test.enqueue(3)
 test.enqueue(4)
 test.enqueue(5)
+test.enqueue(6)
 
-console.log(test.peek())
+console.log(test.rear())
 
 
 
