@@ -9,6 +9,7 @@ function Node(ele){
 
 function Queue(){
     this.head = null;
+    this.last = null;
 
     this.size = () => {
         let size = 0;
@@ -34,6 +35,7 @@ function Queue(){
         node = new Node(ele);
         if(this.isEmpty()){
             this.head = node;
+            this.last = node;
         }
         else{
             dummyHead = this.head;
@@ -42,6 +44,7 @@ function Queue(){
             }
             dummyHead.next = node;
             dummyHead.next.prev = dummyHead;
+            this.last = node;
         }
     }
 
@@ -68,11 +71,7 @@ function Queue(){
     }
 
     this.rear = () => {
-        dummyHead = this.head;
-        while(dummyHead.next != null){
-            dummyHead = dummyHead.next;
-        }
-        return dummyHead.getVal();
+        return this.last.getVal();
     }
 
     this.printList = function(){
@@ -92,16 +91,10 @@ function Queue(){
 }
 
 test = new Queue()
-
-test.enqueue(2)
-test.enqueue(3)
 test.enqueue(4)
-test.enqueue(5)
-test.enqueue(6)
-test.dequeue()
-test.enqueue(2)
-test.dequeue()
-console.log(test.printList())
+
+
+console.log(test.rear())
 
 
 
