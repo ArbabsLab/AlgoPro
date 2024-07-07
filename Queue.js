@@ -38,12 +38,8 @@ function Queue(){
             this.last = node;
         }
         else{
-            dummyHead = this.head;
-            while(dummyHead.next != null){
-                dummyHead = dummyHead.next;
-            }
-            dummyHead.next = node;
-            dummyHead.next.prev = dummyHead;
+            this.last.next = node;
+            node.prev = this.last;
             this.last = node;
         }
     }
@@ -97,11 +93,12 @@ function Queue(){
 }
 
 test = new Queue()
-test.enqueue(4)
-test.enqueue(5)
+test.enqueue(3)
+test.enqueue(2)
+test.enqueue(1)
+test.enqueue(0)
 
-
-console.log(test.rear())
+console.log(test.peek())
 
 
 
