@@ -67,10 +67,16 @@ function Queue(){
     }
 
     this.peek = () => {
+        if (this.isEmpty()){
+            return 'No list exists'
+        }
         return this.head.getVal();
     }
 
     this.rear = () => {
+        if (this.isEmpty()){
+            return 'No list exists'
+        }
         return this.last.getVal();
     }
 
@@ -92,6 +98,7 @@ function Queue(){
 
 test = new Queue()
 test.enqueue(4)
+test.enqueue(5)
 
 
 console.log(test.rear())
