@@ -46,7 +46,21 @@ function Queue(){
     }
 
     this.dequeue = () => {
-        //write dequeue
+        if (this.isEmpty()){
+            console.log('No list exists');
+        }
+        else{
+            if (this.head.next != null){
+                temp = this.head.next;
+                this.head.next = null;
+                this.head = temp;
+                temp.prev = null;
+            }
+            else{
+                this.head = null;
+            }
+            
+        }
     }
 
     this.peek = () => {
@@ -84,8 +98,10 @@ test.enqueue(3)
 test.enqueue(4)
 test.enqueue(5)
 test.enqueue(6)
-
-console.log(test.rear())
+test.dequeue()
+test.enqueue(2)
+test.dequeue()
+console.log(test.printList())
 
 
 
