@@ -92,13 +92,7 @@ function Queue(){
     }
 }
 
-test = new Queue()
-test.enqueue(3)
-test.enqueue(2)
-test.enqueue(1)
-test.enqueue(0)
 
-console.log(test.peek())
 
 
 
