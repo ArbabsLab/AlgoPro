@@ -44,6 +44,15 @@ function BinaryTree(){
             }
         }
     }
+
+    this.inorder = (node) => {
+        if (node == null){
+            return 'Null'
+        }
+        this.inorder(node.left);
+        console.log(node.getVal())
+        this.inorder(node.right)
+    }
 }
 
 test = new BinaryTree()
@@ -54,4 +63,4 @@ test.add(5)
 test.add(3)
 test.add(-1)
 
-console.log(test)
+console.log(test.inorder(test.root))
