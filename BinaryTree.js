@@ -53,6 +53,16 @@ function BinaryTree(){
         console.log(node.getVal())
         this.inorder(node.right)
     }
+
+    this.preorder = (node) => {
+        if (node == null){
+            return 'Null';
+        }
+
+        console.log(node.getVal());
+        this.preorder(node.left)
+        this.preorder(node.right)
+    }
 }
 
 test = new BinaryTree()
@@ -63,4 +73,4 @@ test.add(5)
 test.add(3)
 test.add(-1)
 
-console.log(test.inorder(test.root))
+console.log(test.preorder(test.root))
