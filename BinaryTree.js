@@ -58,10 +58,19 @@ function BinaryTree(){
         if (node == null){
             return 'Null';
         }
-
         console.log(node.getVal());
         this.preorder(node.left)
         this.preorder(node.right)
+    }
+
+    this.postorder = (node) => {
+        if (node == null){
+            return "Null";
+        }
+
+        this.postorder(node.left);
+        this.postorder(node.right)
+        console.log(node.getVal())
     }
 }
 
@@ -73,4 +82,4 @@ test.add(5)
 test.add(3)
 test.add(-1)
 
-console.log(test.preorder(test.root))
+console.log(test.postorder(test.root))
