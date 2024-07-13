@@ -10,6 +10,8 @@ function Node(ele){
 
 function BinaryTree(){
     this.root = null;
+    this.lcount = 0;
+    this.rcount = 0;
 
     this.add = (ele) => {
         if (this.root == null){
@@ -72,6 +74,20 @@ function BinaryTree(){
         this.postorder(node.right)
         console.log(node.getVal())
     }
+
+    this.height = (node) => {
+        if (node == null){
+            return this.count;
+        }
+
+        this.height(node.left);
+        this.lcount += 1;
+
+        this.height(node.right);
+        this.rcount += 1;
+
+        return this.lcount;
+    }
 }
 
 test = new BinaryTree()
@@ -82,4 +98,4 @@ test.add(5)
 test.add(3)
 test.add(-1)
 
-console.log(test.postorder(test.root))
+console.log(test.height(test.root))
