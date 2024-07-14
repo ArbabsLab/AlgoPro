@@ -10,9 +10,7 @@ function Node(ele){
 
 function BinaryTree(){
     this.root = null;
-    this.lcount = 0;
-    this.rcount = 0;
-
+    
     this.add = (ele) => {
         if (this.root == null){
             node = new Node(ele);
@@ -77,17 +75,17 @@ function BinaryTree(){
 
     this.height = (node) => {
         if (node == null){
-            return this.count;
+            return 0;
         }
 
-        this.height(node.left);
-        this.lcount += 1;
+        var l = this.height(node.left);
+        var r = this.height(node.right);
+        var h = 1 + Math.max(l, r);
 
-        this.height(node.right);
-        this.rcount += 1;
-
-        return this.lcount;
+        return h;
     }
+
+    
 }
 
 test = new BinaryTree()
