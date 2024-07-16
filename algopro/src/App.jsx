@@ -1,10 +1,10 @@
 
-import { AddNode } from "./components/AddNode"
+import AddNodeButton from "./components/AddNodeButton"
 
 function App() {
   return (
     <main>
-      <AddNode />
+      <AddNodeButton />
       
     </main>
   )
