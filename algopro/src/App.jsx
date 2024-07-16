@@ -1,13 +1,11 @@
 
-import NodeCard from "./components/NodeCard"
-import NodeArrow from "./components/NodeArrow"
+import { AddNode } from "./components/AddNode"
 
 function App() {
-  
   return (
     <main>
-      <NodeCard />
-      <NodeArrow />
+      <AddNode />
+      
     </main>
   )
 }
