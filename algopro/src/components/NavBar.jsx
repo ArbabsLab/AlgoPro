@@ -10,13 +10,13 @@ export default function NavBar() {
 
   return (
     <nav className='navbar'>
-        <a href="#" className='site-title'>AlgoPro</a>
+        <a href="homepage" className='site-title'>AlgoPro</a>
         <ul>
             <li>
-                <a href='#'>Sort</a>
+                <a href='sortpage'>Sort</a>
             </li>
             <li>
-                <a href='#'>Traverse</a>
+                <a href='traversepage'>Traverse</a>
             </li>
         </ul>
     </nav>
