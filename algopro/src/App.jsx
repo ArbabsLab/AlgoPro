@@ -1,6 +1,7 @@
 
 import NavBar from "./components/NavBar"
 import "./styles.css"
+import { Route, Routes} from "react-router-dom"
 
 function App() {
   return (
