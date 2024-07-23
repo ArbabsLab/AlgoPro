@@ -61,7 +61,7 @@ body {
     border-radius: 5px;
 }
 
-.prelim-sort-buttons .sort-btn{
+ .sort-btn{
     width: 75px;
     height: 30px;
     border-radius: 5px;
@@ -70,11 +70,29 @@ body {
     border: var(--white);
 }
 
-.prelim-sort-buttons .sort-btn:active {
+ .sort-btn:active {
     width: 75px;
     height: 30px;
     border-radius: 5px;
     background-color: var(--l-blue);
     color: var(--white);
     border: var(--white);
+}
+
+.container-sort {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    padding: 25px;
+}
+
+.data-bar{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1px;
+}
+
+.data-bar h3{
+    font-size: 15px;
 }
