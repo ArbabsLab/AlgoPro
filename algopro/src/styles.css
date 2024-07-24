@@ -84,15 +84,25 @@ body {
     justify-content: center;
     gap: 5px;
     padding: 25px;
+    border: 2px solid var(--d-blue);
+    margin: 10px;
+    height: 250px;
 }
 
 .data-bar{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     gap: 1px;
+    align-items: center;
 }
 
 .data-bar h3{
     font-size: 15px;
+}
+
+.alg-btn-sort {
+    background-color: var(--d-blue);
+    height: 30px;
+    margin: 10px;
+    justify-content: space-between;
 }
