@@ -20,7 +20,7 @@ export default function BubbleSort() {
         setNode("")
     }
 
-    const resetData = () => {
+    const clearData = () => {
         setData([])
         console.log(data)
     }
@@ -45,11 +45,24 @@ export default function BubbleSort() {
         } while (swapped);
 
         setData(arr);
-        console.log(arr); // Log the sorted array
+        console.log(arr);
     };
 
     const insertionSort = () => {
+        arr = [...data];
+        n = arr.length;
 
+        for(let i=1; i<n; i++){
+            for(let j=1; j<n; j++){
+                if (arr[j] < arr[j-1]){
+                    let temp = arr[j];
+                    arr[j] = arr[j-1];
+                    arr[j-1] = temp;
+                }
+            }
+        }
+
+        setData(arr);
     }
 
     const quickSort = () => {
@@ -68,7 +81,7 @@ export default function BubbleSort() {
             <input type="text" value={node} name='insert-node' onChange={nodeChange}></input>
             <button className='sort-btn' onClick={dataSubmit}>Add</button>
 
-            <button className='sort-btn' onClick={resetData}>Reset</button>
+            <button className='sort-btn' onClick={clearData}>Clear</button>
         </div>
         
         <div className='container-sort'>

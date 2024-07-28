@@ -62,8 +62,8 @@ body {
 }
 
  .sort-btn{
-    width: 75px;
-    height: 30px;
+    width: 80px;
+    height: 40px;
     border-radius: 5px;
     background-color: var(--d-blue);
     color: var(--white);
@@ -71,9 +71,6 @@ body {
 }
 
  .sort-btn:active {
-    width: 75px;
-    height: 30px;
-    border-radius: 5px;
     background-color: var(--l-blue);
     color: var(--white);
     border: var(--white);
@@ -101,8 +98,9 @@ body {
 }
 
 .alg-btn-sort {
-    background-color: var(--d-blue);
-    height: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
     margin: 10px;
-    justify-content: space-between;
+    
 }
