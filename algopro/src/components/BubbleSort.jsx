@@ -2,11 +2,10 @@ import React from 'react'
 import { useState } from 'react'
 
 export default function BubbleSort() {
-    const maxNum = 100
-    const minNum = 0
 
     const [node, setNode] = useState("")
     const [data, setData] = useState([])
+    const [original, setOriginal] = useState([])
 
     const nodeChange = (event) => {
         setNode(event.target.value)
@@ -14,15 +13,18 @@ export default function BubbleSort() {
     }
 
     const dataSubmit = () => {
-        
         setData([...data, Number(node)]); 
-        
         setNode("")
+        setOriginal([...data, Number(node)]);
+    }
+
+    const resetData = () => {
+        setData([...original])
     }
 
     const clearData = () => {
         setData([])
-        console.log(data)
+        setOriginal([])
     }
 
     
@@ -45,19 +47,23 @@ export default function BubbleSort() {
         } while (swapped);
 
         setData(arr);
-        console.log(arr);
     };
 
     const insertionSort = () => {
-        arr = [...data];
-        n = arr.length;
+        const arr = [...data];
+        const n = arr.length;
 
         for(let i=1; i<n; i++){
-            for(let j=1; j<n; j++){
-                if (arr[j] < arr[j-1]){
-                    let temp = arr[j];
-                    arr[j] = arr[j-1];
-                    arr[j-1] = temp;
+            const num = arr[i]
+
+            for(let j=i; j>= 0; j--){
+                if (num > arr[j]){
+                    continue;
+                }
+                else{
+                    const temp = arr[j];
+                    arr[j] = num;
+                    arr[i] = temp;
                 }
             }
         }
@@ -77,10 +83,10 @@ export default function BubbleSort() {
     return (
         <>
         <div className="prelim-sort-buttons">
-            <label for='insert-node'>Add Number({minNum} - {maxNum})</label>
+            <label for='insert-node'>Add Number</label>
             <input type="text" value={node} name='insert-node' onChange={nodeChange}></input>
             <button className='sort-btn' onClick={dataSubmit}>Add</button>
-
+            <button className='sort-btn' onClick={resetData}>Reset</button>
             <button className='sort-btn' onClick={clearData}>Clear</button>
         </div>
         
