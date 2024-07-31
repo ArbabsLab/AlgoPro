@@ -53,21 +53,20 @@ export default function BubbleSort() {
         const arr = [...data];
         const n = arr.length;
 
-        for(let i=1; i<n; i++){
-            const num = arr[i]
+        for(let i=0; i<n; i++){
+            const num = arr[i];
 
             for(let j=i; j>= 0; j--){
-                if (num > arr[j]){
-                    continue;
+                if(num < arr[j]){
+                    let temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
                 }
-                else{
-                    const temp = arr[j];
-                    arr[j] = num;
-                    arr[i] = temp;
-                }
+                
             }
-        }
 
+        }
+        
         setData(arr);
     }
 
