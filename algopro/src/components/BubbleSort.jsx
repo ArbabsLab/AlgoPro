@@ -70,37 +70,80 @@ export default function BubbleSort() {
         setData(arr);
     }
 
+    function qs(array){
+        if (array.length <= 1){
+            return array;
+        }
+
+        let pivot = array[0];
+        let leftArr = [];
+        let rightArr = [];
+
+        for (let i = 1; i < array.length; i++) {
+            if (array[i] < pivot) {
+            leftArr.push(array[i]);
+            } else {
+            rightArr.push(array[i]);
+            }
+        }
+
+        return [...qs(leftArr), pivot, ...qs(rightArr)];
+    };
+    
+
     const quickSort = () => {
         const arr = [...data];
-        const n = arr.length;
 
-        for(let i=0; i<n; i++){
-            const num = arr[i];
+        const sorted = qs(arr);
+        
+        
+        setData(sorted);
+    }
 
-            for(let j=i; j>= 0; j--){
-                if(num < arr[j]){
-                    let temp = arr[j];
-                    arr[j] = arr[j+1];
-                    arr[j+1] = temp;
-                }
-                
+    function merge(leftArr, rightArr) {
+        let sortedArray = [];
+        
+        while (leftArr.length && rightArr.length) {
+            if (leftArr[0] < rightArr[0]) {
+                sortedArray.push(leftArr.shift());
+            } else {
+                sortedArray.push(rightArr.shift());
             }
-
         }
         
-        setData(arr);
+        return [...sortedArray, ...leftArr, ...rightArr];
+    }
+    
+    function ms(array) {
+        if (array.length <= 1) {
+            return array;
+        }
+        
+        const mid = Math.floor(array.length / 2);
+        const leftArr = ms(array.slice(0, mid));
+        const rightArr = ms(array.slice(mid));
+        
+        return merge(leftArr, rightArr);
     }
 
     const mergeSort = () => {
+        const arr = [...data];
 
+        const sorted = ms(arr);
+
+        setData(sorted);
     }
+
+    
    
 
     return (
         <>
         <div className="prelim-sort-buttons">
-            <label for='insert-node'>Add Number</label>
-            <input type="text" value={node} name='insert-node' onChange={nodeChange}></input>
+            <div className="add-node-container">
+                <label for='insert-node'>Add Number</label>
+                <input type="text" value={node} name='insert-node' onChange={nodeChange}></input>
+            </div>
             <button className='sort-btn' onClick={dataSubmit}>Add</button>
             <button className='sort-btn' onClick={resetData}>Reset</button>
             <button className='sort-btn' onClick={clearData}>Clear</button>
