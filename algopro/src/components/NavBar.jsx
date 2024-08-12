@@ -13,6 +13,9 @@ export default function NavBar() {
         <a href="homepage" className='site-title'>AlgoPro</a>
         <ul>
             <li>
+                <a href='homepage'>Home</a>
+            </li>
+            <li>
                 <a href='sortpage'>Sort</a>
             </li>
             <li>
