@@ -31,9 +31,8 @@ export default function HomePage() {
       <div className="about-container">
         <h2>About the Creator</h2>
         <p>
-          AlgoPro was a project started by Arbab Husain, a computer science student at The City College of New York. Like many students, he preferred a more visual approach to learning
-          as opposed to reading over thousands of slides. He sought to create AlgoPro in order to help himself implement algorithms from scratch and learn web development in order to 
-          visually showcase his work.
+          AlgoPro was a project started by Arbab Husain, a computer science student at The City College of New York. Like many of his peers, he preferred a more visual approach to learning
+          as opposed to reading over thousands of slides. He sought to create AlgoPro in order to help himself implement algorithms from scratch and help many others learn popular algorithms.
         </p>
       </div>
     </div>

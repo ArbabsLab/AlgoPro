@@ -66,20 +66,7 @@ body {
     border-radius: 5px;
 }
 
- .sort-btn{
-    width: 80px;
-    height: 40px;
-    border-radius: 5px;
-    background-color: var(--d-blue);
-    color: var(--white);
-    border: var(--white);
-}
-
- .sort-btn:active {
-    background-color: var(--l-blue);
-    color: var(--white);
-    border: var(--white);
-}
+ 
 
 .container-sort {
     display: flex;
@@ -92,21 +79,82 @@ body {
     border-radius: 5px;
 }
 
-.data-bar{
+.sort-inputs{
     display: flex;
     flex-direction: column;
-    gap: 1px;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+.sort-sliders{
+    display: flex;
+    height: fit-content;
+    width: 100%;
+    justify-content: center;
+    gap: 25px;
+    align-items: center;
+}
+.slider-container{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.slider{
+    appearance: none;
+    width: 150px;
+    height: 15px;
+    background: var(--l-blue);
+    border-radius: 2px;
+}
+
+.slider::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background:var(--d-blue);
+    border-radius: 2px;
+}
+
+.sort-btns{
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.sort-btn{
+    width: 100px;
+    min-height: fit-content;
+    border: none;
+    border-radius: 5px;
+    background: var(--d-blue);
+    color: var(--white);
+    align-items: center;
+    justify-content: center;
+}
+
+.sort-btn:hover{
+    width: 100px;
+    min-height: fit-content;
+    border: none;
+    border-radius: 5px;
+    background: var(--l-blue);
+    color: var(--white);
+    align-items: center;
+    justify-content: center;
+}
+
+.arr-data{
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
-.data-bar h3{
-    font-size: 15px;
-}
-
-.alg-btn-sort {
+.arr-bar{
+    background: var(--d-blue);
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin: 10px;
-    
+    flex-direction: column;
+    width: 25px;
 }
