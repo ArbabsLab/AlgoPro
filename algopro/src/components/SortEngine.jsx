@@ -12,10 +12,44 @@ export default function SortEngine(){
             let num = Math.floor(Math.random()*50);
             randArr.push(num);
         }
-
         setArr(randArr);
-        console.log(randArr);
     }
+
+    const showBar = () => {
+
+        
+    }
+
+    const sortBubble = () => {
+        let copy = [...arr]
+        let swapped = false;
+
+        
+        for(let i=0; i < copy.length - 1; i++){
+            swapped = false;
+            for(let j=0; j < copy.length - 1 - i; j++){
+                if(copy[j] > copy[j+1]){
+                    let temp = copy[j+1];
+                    copy[j+1] = copy[j];
+                    copy[j] = temp;
+                    swapped = true;
+                }
+            }
+
+            if(swapped == false){
+                break;
+            }
+        }
+            
+
+            
+
+        console.log(copy)
+        setArr(copy);
+
+    }
+
+
     return(
         <>
         <div className="sort-inputs">
@@ -34,7 +68,7 @@ export default function SortEngine(){
             </div>
 
             <div className="sort-btns">
-                <button className="sort-btn"><h2>Bubble</h2></button>
+                <button className="sort-btn" onClick={sortBubble}><h2>Bubble</h2></button>
                 <button className="sort-btn"><h2>Quick</h2></button>
                 <button className="sort-btn"><h2>Merge</h2></button>
                 <button className="sort-btn"><h2>Insertion</h2></button>
@@ -44,18 +78,16 @@ export default function SortEngine(){
         <div className="container-sort">
             {
                 arr.map(function(val, key){
-                    let tall = val;
-                    console.log(tall);
                     return(
                         <div className="arr-data">
                             <div className="arr-val">{val}</div>
                             <div className="arr-bar" style={{
-                                height: `${val*2}px`
-            }}></div>
+                                height: `${val*2}px` }}></div>
                         </div>
                     )
                 })
             }
+            
         </div>
         
         </>
