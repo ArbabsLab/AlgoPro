@@ -55,8 +55,59 @@ export default function SortEngine(){
         setArr(copy);
     }
     
-    const sortQuick = () => {
+    function partitionSort(array) {
+        if (array.length <= 1) {
+          return array;
+        }
+      
+        let pivot = array[0];
         
+        let left = []; 
+        let right = [];
+      
+        for (let i = 1; i < array.length; i++) {
+          array[i] < pivot ? left.push(array[i]) : right.push(array[i]);
+        }
+      
+        return partitionSort(left).concat(pivot, partitionSort(right));
+    }
+
+    const sortQuick = () => {
+        let copy = [...arr];
+
+        setArr(partitionSort(copy));
+    }
+    function merge(left, right){
+        let sortedArr = [];
+
+        while(left.length && right.length){
+            if(right[0] < left[0]){
+                sortedArr.push(right.shift())
+            }
+            else{
+                sortedArr.push(left.shift())
+            }
+        }
+
+        return [...sortedArr, ...left, ...right];
+    }
+
+    function partitionMerge(array){
+        if (array.length <= 1){
+            return array;
+        }
+        let mid = Math.floor(array.length / 2);
+        let left = partitionMerge(array.slice(0, mid));
+        let right = partitionMerge(array.slice(mid));
+
+        return merge(left, right);
+    }
+
+    const sortMerge = () => {
+        let copy = [...arr];
+
+        console.log(partitionMerge(copy))
+        setArr(partitionMerge(copy))
     }
 
     return(
@@ -78,9 +129,9 @@ export default function SortEngine(){
 
             <div className="sort-btns">
                 <button className="sort-btn" onClick={sortBubble}><h2>Bubble</h2></button>
-                <button className="sort-btn" onClick={sortQuick}><h2>Quick</h2></button>
-                <button className="sort-btn"><h2>Merge</h2></button>
                 <button className="sort-btn" onClick={sortInsertion}><h2>Insertion</h2></button>
+                <button className="sort-btn" onClick={sortMerge}><h2>Merge</h2></button>
+                <button className="sort-btn" onClick={sortQuick}><h2>Quick</h2></button>
             </div>
         </div>
 
