@@ -3,6 +3,8 @@ import { useState } from "react";
 
 export default function SortEngine(){
     const [arr, setArr] = useState([]);
+    const [swapArr, setSwapArr] = useState([]);
+
 
     const randomArr = () => {
         let randArr = [];
@@ -15,16 +17,9 @@ export default function SortEngine(){
         setArr(randArr);
     }
 
-    const showBar = () => {
-
-        
-    }
-
     const sortBubble = () => {
         let copy = [...arr]
         let swapped = false;
-
-        
         for(let i=0; i < copy.length - 1; i++){
             swapped = false;
             for(let j=0; j < copy.length - 1 - i; j++){
@@ -40,15 +35,29 @@ export default function SortEngine(){
                 break;
             }
         }
-            
-
-            
-
-        console.log(copy)
         setArr(copy);
-
     }
 
+    const sortInsertion = () => {
+        let copy = [...arr];
+
+        for(let i = 1; i<copy.length; i++){
+            let val = copy[i];
+            let j = i-1;
+            while(val < copy[j] && j>=0){
+                let temp = copy[j+1];
+                copy[j+1] = copy[j];
+                copy[j] = temp;
+                j -= 1;
+            }
+        }
+
+        setArr(copy);
+    }
+    
+    const sortQuick = () => {
+        
+    }
 
     return(
         <>
@@ -69,9 +78,9 @@ export default function SortEngine(){
 
             <div className="sort-btns">
                 <button className="sort-btn" onClick={sortBubble}><h2>Bubble</h2></button>
-                <button className="sort-btn"><h2>Quick</h2></button>
+                <button className="sort-btn" onClick={sortQuick}><h2>Quick</h2></button>
                 <button className="sort-btn"><h2>Merge</h2></button>
-                <button className="sort-btn"><h2>Insertion</h2></button>
+                <button className="sort-btn" onClick={sortInsertion}><h2>Insertion</h2></button>
             </div>
         </div>
 
