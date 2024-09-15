@@ -3,8 +3,8 @@ import { useState } from "react";
 
 export default function SortEngine(){
     const [arr, setArr] = useState([]);
-    const [swapArr, setSwapArr] = useState([]);
-
+    const [sortState, setSortState] = useState(false);
+    const [sortSpeed, setSortSpeed] = useState(50);
 
     const randomArr = () => {
         let randArr = [];
@@ -17,8 +17,13 @@ export default function SortEngine(){
         setArr(randArr);
     }
 
-    const sortBubble = () => {
-        let copy = [...arr]
+    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+   
+    
+    const sortBubble = async () => {
+        setSortState(true);
+        let copy = [...arr];
         let swapped = false;
         for(let i=0; i < copy.length - 1; i++){
             swapped = false;
@@ -28,34 +33,44 @@ export default function SortEngine(){
                     copy[j+1] = copy[j];
                     copy[j] = temp;
                     swapped = true;
+
+                    setArr([...copy]);
+                    await delay(sortSpeed);
                 }
             }
-
+            
             if(swapped == false){
                 break;
             }
+            
         }
-        setArr(copy);
+        setSortState(false);
     }
 
-    const sortInsertion = () => {
+    const sortInsertion = async () => {
+        setSortState(true);
         let copy = [...arr];
 
         for(let i = 1; i<copy.length; i++){
             let val = copy[i];
             let j = i-1;
             while(val < copy[j] && j>=0){
-                let temp = copy[j+1];
+                //let temp = copy[j+1];
                 copy[j+1] = copy[j];
-                copy[j] = temp;
+                //copy[j] = temp;
                 j -= 1;
+                setArr([...copy]);
+                await delay(sortSpeed);
             }
+            copy[j+1] = val;
+            setArr([...copy]);
+            await delay(sortSpeed);
         }
 
-        setArr(copy);
+        setSortState(false);
     }
     
-    function partitionSort(array) {
+    async function partitionSort(array) {
         if (array.length <= 1) {
           return array;
         }
@@ -66,17 +81,28 @@ export default function SortEngine(){
         let right = [];
       
         for (let i = 1; i < array.length; i++) {
-          array[i] < pivot ? left.push(array[i]) : right.push(array[i]);
+            await delay((sortSpeed * 0.00000000001));
+            array[i] < pivot ? left.push(array[i]) : right.push(array[i]);
         }
-      
-        return partitionSort(left).concat(pivot, partitionSort(right));
+        left = await (partitionSort(left));
+        right = await (partitionSort(right));
+
+        let sortedArr = left.concat(pivot, right);
+        setArr([...sortedArr]);
+        await delay(sortSpeed);
+
+        return sortedArr;
+        //return partitionSort(left).concat(pivot, partitionSort(right));
     }
 
-    const sortQuick = () => {
+    const sortQuick = async () => {
+        setSortState(true);
         let copy = [...arr];
 
-        setArr(partitionSort(copy));
+        await partitionSort(copy);
+        setSortState(false);
     }
+
     function merge(left, right){
         let sortedArr = [];
 
@@ -106,7 +132,6 @@ export default function SortEngine(){
     const sortMerge = () => {
         let copy = [...arr];
 
-        console.log(partitionMerge(copy))
         setArr(partitionMerge(copy))
     }
 
@@ -116,22 +141,22 @@ export default function SortEngine(){
             <div className="sort-sliders">
                 <div className="slider-container">
                     <h2>Array Size</h2>
-                    <input type="range" min="1" max="30" id="arr-slider" className="slider"/>
+                    <input type="range" min="1" max="20" id="arr-slider" className="slider"/>
                 </div>
                 
                 <div className="slider-container">
                     <h2>Sort Speed</h2>
-                    <input type="range" min="1" max="50" id="speed-slider" className="slider"/>
+                    <input type="range" min="200" max="400" id="speed-slider" onChange={(e) => setSortSpeed(550 - e.target.value)} className="slider"/>
                 </div>
 
                 <button className="sort-btn" onClick={randomArr}><h2>Generate Array</h2></button>
             </div>
 
             <div className="sort-btns">
-                <button className="sort-btn" onClick={sortBubble}><h2>Bubble</h2></button>
-                <button className="sort-btn" onClick={sortInsertion}><h2>Insertion</h2></button>
-                <button className="sort-btn" onClick={sortMerge}><h2>Merge</h2></button>
-                <button className="sort-btn" onClick={sortQuick}><h2>Quick</h2></button>
+                <button className="sort-btn" onClick={sortBubble} disabled={sortState}><h2>Bubble</h2></button>
+                <button className="sort-btn" onClick={sortInsertion} disabled={sortState}><h2>Insertion</h2></button>
+                <button className="sort-btn" onClick={sortMerge} disabled={sortState}><h2>Merge</h2></button>
+                <button className="sort-btn" onClick={sortQuick} disabled={sortState}><h2>Quick</h2></button>
             </div>
         </div>
 
@@ -139,7 +164,7 @@ export default function SortEngine(){
             {
                 arr.map(function(val, key){
                     return(
-                        <div className="arr-data">
+                        <div className="arr-data" key={key}>
                             <div className="arr-val">{val}</div>
                             <div className="arr-bar" style={{
                                 height: `${val*2}px` }}></div>

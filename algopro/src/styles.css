@@ -152,6 +152,10 @@ body {
     align-items: center;
 }
 
+.arr-val{
+    font-weight: bolder;
+}
+
 .arr-bar{
     background: var(--d-blue);
     display: flex;
